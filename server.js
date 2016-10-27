@@ -14,7 +14,7 @@ app.set('port', process.env.PORT || 8080);
 app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://leconghuy:QuangNgai2016@ds135577.mlab.com:35577/todoionic2';
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://ionicapp:admin@ds135577.mlab.com:35577/todoionic2';
 
 // Initialize database connection and then start the server.
 mongoClient.connect(MONGODB_URI, function(err, database) {
