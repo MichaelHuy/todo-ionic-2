@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
+import {Todo} from '../app/todo.ts';
+
 /*
   Generated class for the TodoService provider.
 
@@ -10,9 +14,22 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class TodoService {
+	todosUrl = "/api/todos"
 
   constructor(public http: Http) {
     console.log('Hello TodoService Provider');
   }
+
+  // Get all todos
+    load(): Observable<Todo[]> {
+      return this.http.get(this.todosUrl)
+                 .map(res => res.json())
+                 .catch(this.handleError);
+    }
+
+    handleError(error) {
+      console.error(error);
+      return Observable.throw(error.json().error || 'Server error');
+    }
 
 }
